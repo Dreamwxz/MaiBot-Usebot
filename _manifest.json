@@ -1,0 +1,17 @@
+{
+  "manifest_version": "v0.0.1Beta",
+  "name": "MaiBot-Usebot",
+  "version": "0.0.1Beta",
+  "description": "让麦麦能更方便的在群聊中使用指令触发其他Bot",
+  "author": {
+    "name": "小泽"
+  },
+  "license": "MIT",
+  "host_application": {
+    "min_version": "0.7.0"
+  },
+  "homepage_url": "https://github.com/dreamwxz/MaiBot-Usebot",
+  "repository_url": "https://github.com/dreamwxz/MaiBot-Usebot",
+  "keywords": ["trigger", "interaction", "群聊"],
+  "categories": ["Entertainment & Interaction"]
+}
