@@ -1,6 +1,6 @@
-from typing import List, Tuple, Type
+from typing import List, Tuple, Type, Optional
 from src.plugin_system import (
-    BasePlugin, register_plugin, BaseAction, 
+    BasePlugin, register_plugin, BaseAction,
     ComponentInfo, ActionActivationType
 )
 
@@ -9,7 +9,7 @@ from src.plugin_system import (
 class BotTriggerAction(BaseAction):
     """Bot触发Action - 通过发送文本来激活其他Bot"""
     # 激活设置
-    activation_type = ActionActivationType.LLM_JUDGE  # 使用LLM判定
+    activation_type = ActionActivationType.ALWAYS  # 使用LLM判定
     parallel_action = False
 
     # 动作基本信息
@@ -39,3 +39,24 @@ class BotTriggerAction(BaseAction):
         await self.send_text(trigger_text)
 
         return True, f"发送了Bot触发文本: {trigger_text}"
+
+# ===== 插件主类 =====
+
+@register_plugin
+class MaiBotUsebotPlugin(BasePlugin):
+    """MaiBot-Usebot插件 - 让麦麦能更方便的在群聊中使用指令触发其他Bot"""
+
+    # === 插件基本信息（必须填写）===
+    plugin_name = "mai_bot_usebot"
+    enable_plugin = True
+    dependencies = []
+    python_dependencies = []
+    config_file_name = "config.toml"
+    config_schema = {}
+
+    def get_plugin_components(self) -> List[Tuple[ComponentInfo, Type]]:
+        """返回插件包含的组件列表"""
+        return [
+            # 添加Bot触发Action组件
+            (BotTriggerAction.get_action_info(), BotTriggerAction),
+        ]
