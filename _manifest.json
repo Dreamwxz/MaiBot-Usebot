@@ -1,5 +1,5 @@
 {
-  "manifest_version": "v0.0.1Beta",
+  "manifest_version": "1",
   "name": "MaiBot-Usebot",
   "version": "0.0.1Beta",
   "description": "让麦麦能更方便的在群聊中使用指令触发其他Bot",
